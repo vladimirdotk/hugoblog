@@ -1,5 +1,7 @@
 {
   "name": "hugo-blog",
   "alias": "hugo-blog",
-  "public": "./public"
+  "statuc": {
+    "public": "./public"
+  }
 }
