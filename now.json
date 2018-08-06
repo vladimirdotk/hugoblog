@@ -1,0 +1,5 @@
+{
+  "name": "Hugo Blog",
+  "alias": "hugo-blog",
+  "root": "./public"
+}
