@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-Ru</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Mon, 06 Aug 2018 20:04:26 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 06 Aug 2018 21:49:33 +0300</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Экстремальное программирование. Разработка через тестирование.</title>
+      <link>/posts/tdd_xp/</link>
+      <pubDate>Mon, 06 Aug 2018 21:49:33 +0300</pubDate>
+      
+      <guid>/posts/tdd_xp/</guid>
+      <description>&lt;p&gt;&lt;img alt=&#34;Экстремальное программирование. Разработка через тестирование.&#34; class=&#34;blog-pic&#34; src=&#34;https://ozon-st.cdn.ngenix.net/multimedia/1018707026.jpg&#34; /&gt;
+Прочитал полезную книгу Кента Бека &amp;quot;Экстремальное программирование. Разработка через тестирование&amp;quot;. Уже давно хотел заняться детальным изучением вопросов связанных с&amp;nbsp;тестированием&amp;nbsp;ПО.&amp;nbsp;И вот, наконец, нашел время на прочтение данной книги. Что удивительного по поводу полезности -&amp;nbsp;действительно полезной (по крайней мере для меня), оказалась только третья (последняя) часть книги. Первая&amp;nbsp;часть описывает пример разработки небольшого проекта&amp;nbsp;связанного с конвертацией валют, вторая - создание своего тестового фреймворка на python&amp;#39;e, похожего на модуль unittest. Однако, именно в третьей части находится всё самое &amp;quot;вкусное&amp;quot;, что я хотел бы резюмировать в этой заметке.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Джедайские техники</title>
