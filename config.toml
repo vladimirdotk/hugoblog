@@ -1,0 +1,52 @@
+baseURL = "http://example.org/"
+languageCode = "ru-Ru"
+title = "Заметки на IT темы"
+
+copyright = "Copyright (c) 2018, all rights reserved."
+canonifyurls = true
+paginate = 3
+theme = "heather-hugo"
+
+googleAnalytics = ""
+disqusShortname = ""
+
+[author]
+  name = "Vladimir K."
+
+SectionPagesMenu = "main"
+
+# use Chroma for syntax highlight
+pygmentsStyle = "native" # other dark style options: vim, fruity, monokai
+# enable syntax highlight for code blocks
+pygmentsCodeFences = true
+
+[[menu.main]]
+  name = "Posts"
+  weight = -120
+  identifier = "posts"
+  url = "/posts/"
+
+[[menu.main]]
+  name = "Tags"
+  weight = -110
+  identifier = "tag"
+  url = "/tags/"
+
+[params.meta]
+  keywords = "blog, tech"
+  description = "Personal blog."
+
+[params]
+  github = "github id"
+  gitlab = "gitlab id"
+  twitter = "twitter id"
+  linkedin = "linkedin id"
+  email = "myemail"
+
+[params.colors]
+  # hugo-dusk colors
+  background = "#101010" # background color for the site
+  main = "#99cc66"
+  text = "#dbdbdb"
+  code-quote-bg = "#1D1F21" # background color for quotes and code blocks
+  copyright = "#404040" # copyright text color
