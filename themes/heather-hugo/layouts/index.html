@@ -1,0 +1,18 @@
+
+{{ partial "head.html" . }}
+<main class="posts">
+  {{ range .Data.Pages }}
+  <article class="post">
+      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      <p class="small gray"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 02, 2006" }}</time></p>
+      <p>{{ .Summary }}</p>
+      <!-- Support heather-hugo users who have not yet added the "Read more" label option to their site config. -->
+      {{ if isset .Site.Params "readMoreLabel" }}
+        <p class="small"><a href="{{ .Permalink }}">{{ .Site.Params.readMoreLabel }} »</a></p>
+      {{ else }}
+        <p class="small"><a href="{{ .Permalink }}">Читать дальше »</a></p>
+      {{ end }}
+  </article>
+  {{ end }}
+</main>
+{{ partial "foot.html" . }}
