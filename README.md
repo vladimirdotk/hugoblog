@@ -1,5 +1,5 @@
 # Hugo blog
-> Simple blog on hugo engine
+> Simple blog on hugo engine https://hugo-blog.now.sh/
 
 ### Develop
 
