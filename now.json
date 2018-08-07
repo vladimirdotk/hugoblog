@@ -1,0 +1,7 @@
+{
+  "name": "hugo-blog",
+  "alias": "hugo-blog",
+  "static": {
+    "public": "./public"
+  }
+}
