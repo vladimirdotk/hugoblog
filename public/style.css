@@ -78,3 +78,12 @@ footer p,
   margin-right: auto;
   height: 300px;
 }
+
+.highlight {
+  font-size: 18px;
+}
+
+.highlight > pre {
+  padding: 20px;
+  overflow: scroll;
+}
