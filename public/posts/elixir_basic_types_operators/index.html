@@ -1,0 +1,177 @@
+<!doctype html> 
+<html lang="ru-Ru"> 
+<head>
+  <meta charset="utf-8">
+  <title>Заметки на IT темы</title>
+  <meta name="author" content="Vladimir K.">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <link rel="icon" href="/favicon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+  
+  
+  <link rel="stylesheet" href="/style.css" />
+  
+  
+
+</head>
+
+<body class="">
+
+  
+
+  <div class="wrap">
+    <header class="mb">
+      <h1 class="h1 m-0"><a href="/">Заметки на IT темы</a></h1>
+      <p class="site-description"></p>
+    </header>
+
+
+<main>
+<article class="post">
+  <h2><a href="/posts/elixir_basic_types_operators/" title="Elixir. Основные типы и операторы.">Elixir. Основные типы и операторы.</a></h2>
+  <p class="small gray"><time datetime="2018-08-14">Aug 14, 2018</time></p>
+  <p><img class="blog-pic" src="http://brunakochi.com/images/elixir-horizontal.png" /></p>
+
+<p>Elixir - это функциональный, распределённый язык программирования общего назначения, который работает на виртуальной машине Erlang (BEAM). Построен поверх Erlang, что обеспечивает распределённость, отказоустойчивость, исполнение в режиме мягкого реального времени, метапрограммирование с макросами и полиморфизмом, реализованным через протоколы. Использует Erlang/OTP для работы с деревьями процессов. Я планирую создать цикл заметок по Elixir&rsquo;у, которые будут являть собой выдержки из различных статей и официальной документации, переведенные на русский язык. Начнем с основых типов и операторов.
+</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir">a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>          <span style="color:#75715e"># integer</span>
+b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0x1F</span>       <span style="color:#75715e"># integer</span>
+c <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>        <span style="color:#75715e"># float</span>
+d <span style="color:#f92672">=</span> true       <span style="color:#75715e"># boolean</span>
+e <span style="color:#f92672">=</span> <span style="color:#e6db74">:atom</span>      <span style="color:#75715e"># atom / symbol</span>
+f <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;elixir&#34;</span>   <span style="color:#75715e"># string</span>
+g <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]  <span style="color:#75715e"># list</span>
+h <span style="color:#f92672">=</span> {<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>}  <span style="color:#75715e"># tuple</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts(<span style="color:#ae81ff">10</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>) <span style="color:#75715e"># 5.0, деление всегда возвращает float</span>
+
+<span style="color:#75715e"># Атомы</span>
+<span style="color:#75715e"># Это константы имена которых являются их значениями</span>
+<span style="color:#75715e"># Булевы значения по факту атомы</span>
+
+h <span style="color:#f92672">=</span> <span style="color:#e6db74">:hello</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts h <span style="color:#75715e">#hello</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts true <span style="color:#f92672">==</span> <span style="color:#e6db74">:true</span> <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts is_atom(false) <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts is_boolean(<span style="color:#e6db74">:false</span>) <span style="color:#75715e"># true</span>
+
+<span style="color:#75715e"># Строки</span>
+<span style="color:#75715e"># Всегда в двойных ковычках</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;hello&#34;</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;hello </span><span style="color:#e6db74">#{</span><span style="color:#e6db74">:world</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#75715e"># интерполяция строк</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;hello</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">world&#34;</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts is_binary(<span style="color:#e6db74">&#34;hello&#34;</span>) <span style="color:#75715e"># строки представлены последовательность байт</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts byte_size(<span style="color:#e6db74">&#34;hellö&#34;</span>) <span style="color:#75715e"># 6, т.к. ö - это 2 байта</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#a6e22e">String</span><span style="color:#f92672">.</span>length(<span style="color:#e6db74">&#34;hellö&#34;</span>) <span style="color:#75715e"># 5 - вот так нужно проверять длину строки</span>
+
+<span style="color:#75715e"># Анонимные функции</span>
+<span style="color:#75715e"># Можно записать в строку</span>
+add <span style="color:#f92672">=</span> fn a, b <span style="color:#f92672">-&gt;</span> a <span style="color:#f92672">+</span> b end
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts add<span style="color:#f92672">.</span>(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>) <span style="color:#75715e"># Точка и скобки необходимы для вызова анонимной функции  </span>
+
+<span style="color:#75715e"># проверка на арность (количество аргументов)</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts is_function(add, <span style="color:#ae81ff">2</span>) <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts is_function(add, <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># false</span>
+
+double <span style="color:#f92672">=</span> fn a <span style="color:#f92672">-&gt;</span> add<span style="color:#f92672">.</span>(a, a) end <span style="color:#75715e"># замыкания</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts double<span style="color:#f92672">.</span>(<span style="color:#ae81ff">2</span>) <span style="color:#75715e"># 4</span>
+
+x <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
+(fn <span style="color:#f92672">-&gt;</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> end)<span style="color:#f92672">.</span>() <span style="color:#75715e"># Присвоение значения перменной внутри функции не влияет на глобальную область видимости</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts x <span style="color:#75715e"># 42</span>
+
+<span style="color:#75715e"># Связанные списки</span>
+<span style="color:#75715e"># Могут содержать разные типы</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts length [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, true, <span style="color:#ae81ff">3</span>] <span style="color:#75715e"># 4</span>
+<span style="color:#75715e"># Операторы списков никогда не меняют списки, всегда возвращают новый</span>
+
+list <span style="color:#f92672">=</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>]
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts hd(list) <span style="color:#75715e"># 1, Получение начального элемента списка, tl(list) - начиная со 2-го</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts [<span style="color:#ae81ff">104</span>, <span style="color:#ae81ff">101</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">108</span>, <span style="color:#ae81ff">111</span>] <span style="color:#75715e"># hello, Elixir преобразует список из ASCII чисел в символы</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#39;hello&#39;</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;hello&#34;</span> <span style="color:#75715e"># false, в одиночных список симоволов, в двойных - строка</span>
+
+<span style="color:#75715e"># Кортежи</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect {<span style="color:#e6db74">:ok</span> , <span style="color:#e6db74">&#34;hello&#34;</span>}
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts tuple_size {<span style="color:#e6db74">:ok</span> , <span style="color:#e6db74">&#34;hello&#34;</span>} <span style="color:#75715e"># 2</span>
+
+<span style="color:#75715e"># Кортежи записаны в память непрерывно, значит взять элемент по индексу - дешевая операция</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts elem({<span style="color:#e6db74">:ok</span> , <span style="color:#e6db74">&#34;hello&#34;</span>}, <span style="color:#ae81ff">1</span>) <span style="color:#75715e"># &#34;hello&#34;</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect put_elem({<span style="color:#e6db74">:ok</span> , <span style="color:#e6db74">&#34;hello&#34;</span>}, <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;world&#34;</span>) <span style="color:#75715e"># возвращает новый кортеж</span>
+
+<span style="color:#75715e"># Списки или кортежи?</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect [<span style="color:#ae81ff">0</span>] <span style="color:#f92672">++</span> list <span style="color:#75715e"># Дешевая операция</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect list <span style="color:#f92672">++</span> [<span style="color:#ae81ff">0</span>] <span style="color:#75715e"># Дорогая (линейная сложность)</span>
+
+<span style="color:#75715e"># Получение размера кортежа или элемента по индексу дешевая операция</span>
+<span style="color:#75715e"># Апдейт элементов или добавление - дорогая операция, требуется создание нового кортежа</span>
+<span style="color:#75715e"># Одно из использований кортежей в языке - возвращать доп. инфу из фукнции</span>
+<span style="color:#75715e"># iex&gt; File.read(&#34;path/to/existing/file&#34;)</span>
+<span style="color:#75715e"># {:ok, &#34;... contents ...&#34;}</span>
+<span style="color:#75715e"># iex&gt; File.read(&#34;path/to/unknown/file&#34;)</span>
+<span style="color:#75715e"># {:error, :enoent}</span>
+
+<span style="color:#75715e"># size - операция за константное время</span>
+<span style="color:#75715e"># length - операция за линейное время</span>
+
+<span style="color:#75715e"># Ещё есть типы Port, Reference, и PID</span>
+
+<span style="color:#75715e"># +++ и -- для манипуляций со списками</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] <span style="color:#f92672">++</span> [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>] <span style="color:#75715e"># [1, 2, 3, 4, 5, 6]</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>inspect [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>] <span style="color:#f92672">--</span> [<span style="color:#ae81ff">2</span>] <span style="color:#75715e"># [1, 3]</span>
+
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#e6db74">&#34;foo&#34;</span> <span style="color:#f92672">&lt;&gt;</span> <span style="color:#e6db74">&#34;bar&#34;</span> <span style="color:#75715e"># конкатенация строк</span>
+
+<span style="color:#75715e"># В эликсире есть 3 булевых оператора: or, and и not</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts false or is_atom(<span style="color:#e6db74">:example</span>) <span style="color:#75715e"># true</span>
+
+<span style="color:#75715e"># Булевы операторы требуют тип boolean в качестве операндов, иначе ошибка</span>
+<span style="color:#75715e"># iex&gt; 1 and true</span>
+<span style="color:#75715e"># ** (BadBooleanError) expected a boolean on left-side of &#34;and&#34;, got: 1</span>
+
+<span style="color:#75715e"># Операторы ||, &amp;&amp; и ! принимают аргуенты любого типа</span>
+<span style="color:#75715e"># Все значения кроме false и nil считаются true</span>
+
+<span style="color:#75715e"># or</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">||</span> true <span style="color:#75715e"># 1</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts false <span style="color:#f92672">||</span> <span style="color:#ae81ff">11</span> <span style="color:#75715e"># 11</span>
+
+<span style="color:#75715e"># and</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts nil <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">13</span> <span style="color:#75715e"># nil</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts true <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">17</span> <span style="color:#75715e"># 17</span>
+
+<span style="color:#75715e"># !</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#f92672">!</span>true <span style="color:#75715e"># false</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#f92672">!</span><span style="color:#ae81ff">1</span> <span style="color:#75715e"># false</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#f92672">!</span>nil <span style="color:#75715e"># true</span>
+
+<span style="color:#75715e"># Операторы сравнения ==, !=, ===, !==, &lt;=, &gt;=, &lt;, &gt;</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">2</span> <span style="color:#75715e"># true</span>
+
+<span style="color:#75715e"># Разница между == и === в более строгом стравнении типов integer и float</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1.0</span> <span style="color:#75715e"># true</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">1.0</span> <span style="color:#75715e"># false</span>
+
+<span style="color:#75715e"># В эликсире мы можем сравнить данные разных типов, существует определенный порядок</span>
+<span style="color:#75715e"># number &lt; atom &lt; reference &lt; function &lt; port &lt; pid &lt; tuple &lt; map &lt; list &lt; bitstring</span>
+<span style="color:#75715e"># Сделано так из практических соображений, чтобы алгоритмы сортировки не беспокоились</span>
+<span style="color:#75715e"># о типах данных и в каком порядке их сортировать</span>
+<span style="color:#a6e22e">IO</span><span style="color:#f92672">.</span>puts <span style="color:#ae81ff">1</span> <span style="color:#f92672">&lt;</span> <span style="color:#e6db74">:atom</span> <span style="color:#75715e"># true</span></code></pre></div>
+</article>
+</main>
+</div>
+
+
+
+</body>
+</html>

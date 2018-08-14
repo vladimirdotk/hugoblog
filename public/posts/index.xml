@@ -7,10 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>ru-Ru</language>
     <copyright>Copyright (c) 2018, all rights reserved.</copyright>
-    <lastBuildDate>Wed, 08 Aug 2018 00:18:24 +0300</lastBuildDate>
+    <lastBuildDate>Tue, 14 Aug 2018 22:24:44 +0300</lastBuildDate>
     
 	<atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Elixir. Основные типы и операторы.</title>
+      <link>/posts/elixir_basic_types_operators/</link>
+      <pubDate>Tue, 14 Aug 2018 22:24:44 +0300</pubDate>
+      
+      <guid>/posts/elixir_basic_types_operators/</guid>
+      <description>&lt;p&gt;&lt;img class=&#34;blog-pic&#34; src=&#34;http://brunakochi.com/images/elixir-horizontal.png&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Elixir - это функциональный, распределённый язык программирования общего назначения, который работает на виртуальной машине Erlang (BEAM). Построен поверх Erlang, что обеспечивает распределённость, отказоустойчивость, исполнение в режиме мягкого реального времени, метапрограммирование с макросами и полиморфизмом, реализованным через протоколы. Использует Erlang/OTP для работы с деревьями процессов. Я планирую создать цикл заметок по Elixir&amp;rsquo;у, которые будут являть собой выдержки из различных статей и официальной документации, переведенные на русский язык. Начнем с основых типов и операторов.
+&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Программист-фанатик</title>
