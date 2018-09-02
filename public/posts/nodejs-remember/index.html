@@ -1,0 +1,113 @@
+<!doctype html> 
+<html lang="ru-Ru"> 
+<head>
+  <meta charset="utf-8">
+  <title>Заметки на IT темы</title>
+  <meta name="author" content="Vladimir K.">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  
+  <link rel="icon" href="/favicon.png" />
+  <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png" />
+  
+  
+  <link rel="stylesheet" href="/style.css" />
+  
+  
+
+</head>
+
+<body class="">
+
+  
+
+  <div class="wrap">
+    <header class="mb">
+      <h1 class="h1 m-0"><a href="/">Заметки на IT темы</a></h1>
+      <p class="site-description"></p>
+    </header>
+
+
+<main>
+<article class="post">
+  <h2><a href="/posts/nodejs-remember/" title="Nodejs. Вспомнить всё. Основы.">Nodejs. Вспомнить всё. Основы.</a></h2>
+  <p class="small gray"><time datetime="2018-08-31">Aug 31, 2018</time></p>
+  <p><img class="blog-pic" src="https://nodejs.org/static/images/logos/nodejs-new-pantone-black.png" /></p>
+
+<p>Node или Node.js — программная платформа, основанная на движке V8 (транслирующем JavaScript в машинный код), превращающая JavaScript из узкоспециализированного языка в язык общего назначения. Решил посмотреть несколько курсов по Node.js, вспомнить основные моменты, которые зачастую забываются&hellip;в основном потому, что не очень часто, если не сказать редко, используются. Речь пойдет не только о самой &ldquo;ноде&rdquo;, но и об окружении и сопутствующих библиотеках.
+</p>
+
+<h3 id="server">Server</h3>
+
+<p>Простейший сервер на &ldquo;ноде&rdquo;:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> {<span style="color:#a6e22e">Server</span>} <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;http&#39;</span>);
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Server</span>((<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">end</span>(<span style="color:#e6db74">&#34;hello world&#34;</span>);
+});
+
+<span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#ae81ff">3000</span>);
+</code></pre></div></p>
+
+<h3 id="eslint">Eslint</h3>
+
+<p>Для единого стиля и подсказок по нему в редакторе как правило используют <code>eslint</code>. Наиболее популярная конфигурация - от <code>airbinb</code>. Установить её можно следующим образом:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">npx install-peerdeps --dev eslint-config-airbnb-base</code></pre></div>
+
+<p>После чего, в конфигурационный файл <code>.eslintrc</code> добавить:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;extends&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;airbnb-base&#34;</span></code></pre></div></p>
+
+<h3 id="require">Require</h3>
+
+<p>Где ищет require?</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;some-module&#39;</span>)
+</code></pre></div>
+
+<ul>
+<li>встроенные модули</li>
+<li>node_modules (в проекте, затем выше)</li>
+<li>переменная окружения <code>NODE_PATH</code></li>
+</ul>
+
+<h3 id="hotreload">Hotreload</h3>
+
+<p>Для hotreload&rsquo;а используют модуль <code>nodemon</code>, установленный глобально:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">nodemon</span> <span style="color:#a6e22e">index</span>.<span style="color:#a6e22e">js</span>
+</code></pre></div>
+
+<h3 id="отладка">Отладка</h3>
+
+<p>Для отладки в <code>vscode</code> достаточно зайти в меню <code>отладка</code>, добавить новый отладчик <code>Node.js</code>, указать в открывшемся конфигурационном файле стартовый скрипт, сохранить файл, поставить точку(-и) останова, выполнить запрос к своем серверу.</p>
+
+<h3 id="порядок-выполнения-кода">Порядок выполнения кода</h3>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">__filename</span>, <span style="color:#e6db74">&#39;F&#39;</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">fd</span>) =&gt; {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;fs.open&#39;</span>);
+}) <span style="color:#75715e">// 4
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">setImmediate</span>(() =&gt; {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;immediate&#39;</span>);
+}) <span style="color:#75715e">// 5
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">nextTick</span>(() =&gt; {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;next tick&#39;</span>);
+}) <span style="color:#75715e">// 2
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">new</span> Promise(<span style="color:#a6e22e">resolve</span> =&gt; {
+  <span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#39;promise&#39;</span>)
+}).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>); <span style="color:#75715e">// 3
+</span><span style="color:#75715e"></span>
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;some text&#39;</span>) <span style="color:#75715e">// 1
+</span><span style="color:#75715e"></span></code></pre></div>
+</article>
+</main>
+</div>
+
+
+
+</body>
+</html>
